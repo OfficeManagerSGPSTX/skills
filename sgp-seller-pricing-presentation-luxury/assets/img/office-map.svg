@@ -10,14 +10,10 @@
 <text x="275.0" y="90.6" text-anchor="start">Edgartown, MA</text>
 <circle cx="259.6" cy="84.2" r="4.6" fill="#FFFFFF" stroke="#0090B4" stroke-width="0.8"/><circle cx="259.6" cy="84.2" r="2.6" fill="#0090B4"/>
 <text x="252.6" y="86.8" text-anchor="end">Warwick, RI</text>
-<circle cx="159.9" cy="145.1" r="4.6" fill="#FFFFFF" stroke="#0090B4" stroke-width="0.8"/><circle cx="159.9" cy="145.1" r="2.6" fill="#0090B4"/>
-<text x="166.9" y="147.7" text-anchor="start">Abingdon, Bristol &amp; Marion, VA</text>
-<circle cx="207.5" cy="157.1" r="4.6" fill="#FFFFFF" stroke="#0090B4" stroke-width="0.8"/><circle cx="207.5" cy="157.1" r="2.6" fill="#0090B4"/>
-<text x="214.5" y="159.7" text-anchor="start">Washington, NC</text>
-<circle cx="199.7" cy="174.1" r="4.6" fill="#FFFFFF" stroke="#0090B4" stroke-width="0.8"/><circle cx="199.7" cy="174.1" r="2.6" fill="#0090B4"/>
-<text x="206.7" y="176.7" text-anchor="start">Carolina Beach, NC</text>
-<circle cx="179.4" cy="190.0" r="4.6" fill="#FFFFFF" stroke="#0090B4" stroke-width="0.8"/><circle cx="179.4" cy="190.0" r="2.6" fill="#0090B4"/>
-<text x="186.4" y="192.6" text-anchor="start">South Carolina</text>
+<circle cx="161.9" cy="143.8" r="4.6" fill="#FFFFFF" stroke="#0090B4" stroke-width="0.8"/><circle cx="161.9" cy="143.8" r="2.6" fill="#0090B4"/>
+<text x="168.9" y="146.4" text-anchor="start">Abingdon, VA</text>
+<circle cx="180.8" cy="188.1" r="4.6" fill="#FFFFFF" stroke="#0090B4" stroke-width="0.8"/><circle cx="180.8" cy="188.1" r="2.6" fill="#0090B4"/>
+<text x="187.8" y="190.7" text-anchor="start">Charleston, SC</text>
 <circle cx="148.9" cy="175.0" r="4.6" fill="#FFFFFF" stroke="#0090B4" stroke-width="0.8"/><circle cx="148.9" cy="175.0" r="2.6" fill="#0090B4"/>
 <text x="141.9" y="177.6" text-anchor="end">Athens, GA</text>
 <circle cx="166.7" cy="211.1" r="4.6" fill="#FFFFFF" stroke="#0090B4" stroke-width="0.8"/><circle cx="166.7" cy="211.1" r="2.6" fill="#0090B4"/>
@@ -29,7 +25,7 @@
 <circle cx="22.3" cy="239.2" r="4.6" fill="#FFFFFF" stroke="#0090B4" stroke-width="0.8"/><circle cx="22.3" cy="239.2" r="2.6" fill="#0090B4"/>
 <text x="29.3" y="241.8" text-anchor="start">Rockport, TX</text>
 <circle cx="319.7" cy="336.9" r="4.6" fill="#FFFFFF" stroke="#0090B4" stroke-width="0.8"/><circle cx="319.7" cy="336.9" r="2.6" fill="#003E69"/>
-<circle cx="321.5" cy="337.0" r="4.6" fill="#FFFFFF" stroke="#0090B4" stroke-width="0.8"/><circle cx="321.5" cy="337.0" r="2.6" fill="#003E69"/>
+<circle cx="321.0" cy="337.0" r="4.6" fill="#FFFFFF" stroke="#0090B4" stroke-width="0.8"/><circle cx="321.0" cy="337.0" r="2.6" fill="#003E69"/>
 <circle cx="321.8" cy="342.6" r="4.6" fill="#FFFFFF" stroke="#0090B4" stroke-width="0.8"/><circle cx="321.8" cy="342.6" r="2.6" fill="#003E69"/>
 <text x="312.4" y="322.9" text-anchor="end" font-weight="bold">U.S. Virgin Islands</text>
 <text x="312.4" y="332.9" text-anchor="end">St. Thomas · St. John · St. Croix</text>

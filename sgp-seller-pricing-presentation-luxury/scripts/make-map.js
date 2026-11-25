@@ -27,17 +27,15 @@ const pins = [
   ["Rockland, ME", -69.11, 44.10, "r"],
   ["Edgartown, MA", -70.51, 41.39, "r"],
   ["Warwick, RI", -71.42, 41.70, "l"],
-  ["Abingdon, Bristol & Marion, VA", -82.19, 36.60, "r"],
-  ["Washington, NC", -77.05, 35.55, "r"],
-  ["Carolina Beach, NC", -77.89, 34.04, "r"],
-  ["South Carolina", -80.08, 32.61, "r"],
+  ["Abingdon, VA", -81.98, 36.71, "r"],
+  ["Charleston, SC", -79.93, 32.78, "r"],
   ["Athens, GA", -83.38, 33.96, "l"],
   ["Fernandina Beach, FL", -81.46, 30.67, "r"],
   ["St. Petersburg, FL", -82.64, 27.77, "l"],
   ["Bokeelia, FL", -82.16, 26.71, "l"],
   ["Rockport, TX", -97.05, 28.02, "r"],
 ];
-const vi = [[-64.93, 18.34], [-64.73, 18.33], [-64.70, 17.75]];
+const vi = [[-64.93, 18.34], [-64.79, 18.33], [-64.70, 17.75]]; // St. Thomas, St. John (Cruz Bay), Christiansted
 
 const esc = (s) => s.replace(/&/g, "&amp;");
 let out = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}">
