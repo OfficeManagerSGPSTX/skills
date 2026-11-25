@@ -244,10 +244,49 @@ function intro() {
   return out;
 }
 
+
+// Pixel size of a JPEG or PNG, so photos keep their shape.
+function imageSize(file) {
+  const full = path.isAbsolute(file) ? file : path.join(SKILL_DIR, file);
+  const b = fs.readFileSync(full);
+  if (b[0] === 0x89 && b[1] === 0x50) return { w: b.readUInt32BE(16), h: b.readUInt32BE(20) };
+  let i = 2;
+  while (i < b.length) {
+    if (b[i] !== 0xff) { i++; continue; }
+    const m = b[i + 1], len = b.readUInt16BE(i + 2);
+    if (m >= 0xc0 && m <= 0xcf && m !== 0xc4 && m !== 0xc8 && m !== 0xcc) return { h: b.readUInt16BE(i + 5), w: b.readUInt16BE(i + 7) };
+    i += 2 + len;
+  }
+  throw new Error("Cannot read image size: " + file);
+}
+
+// Property photos: the first runs full width, the rest sit in pairs at a shared height.
+function photos(list = []) {
+  if (!list.length) return [];
+  const FULL = Math.floor(TEXT_W / 15) - 4, GAP = 10, out = [];
+  const caption = (t) => (t ? [p(run(t, { size: 15, italics: true, color: "5A6B78" }), { before: 40, after: 160 })] : []);
+  const [hero, ...rest] = list;
+  const hs = imageSize(hero.file);
+  out.push(p(image(hero.file, FULL, Math.round((FULL * hs.h) / hs.w)), { after: 0, keepNext: !!hero.caption }), ...caption(hero.caption));
+  for (let k = 0; k < rest.length; k += 2) {
+    const pair = rest.slice(k, k + 2).map((ph) => ({ ...ph, s: imageSize(ph.file) }));
+    const ratioSum = pair.reduce((a, ph) => a + ph.s.w / ph.s.h, 0);
+    const h = Math.min(300, Math.floor((FULL - GAP * (pair.length - 1)) / ratioSum));
+    const cells = pair.map((ph) => {
+      const w = Math.round((h * ph.s.w) / ph.s.h);
+      return cell([p(image(ph.file, w, h), { after: 0 }), ...caption(ph.caption)], (w + GAP) * 15, { pad: 0, borders: noBorders, valign: VerticalAlign.TOP });
+    });
+    out.push(new Table({ rows: [new TableRow({ children: cells, cantSplit: true })], width: { size: cells.length ? pair.reduce((a, ph) => a + (Math.round((h * ph.s.w) / ph.s.h) + GAP) * 15, 0) : 0, type: WidthType.DXA }, borders: noBorders }));
+    out.push(p([], { after: 120 }));
+  }
+  return out;
+}
+
 function propertySection() {
   const ps = spec.propertySection;
   const out = [...h1("Your Property")];
   if (ps.intro) out.push(body(ps.intro));
+  out.push(...photos(ps.photos));
   for (const g of ps.groups || []) out.push(h2(g.heading), ...(g.paragraphs || []).map((t) => body(t, { keepNext: !!(g.bullets && g.bullets.length) })), ...bullets(g.bullets));
   if (ps.footnote) out.push(small(ps.footnote, { size: 17 }));
   return out;

@@ -29,6 +29,7 @@ Ask the agent for whatever is missing, in one message, before doing anything els
 - **Owners' names** exactly as they should be printed.
 - **The property:** estate, plot numbers, quarter, beds/baths, sq ft, acres, water relationship, condition, features, recent work, what is included in the sale. Seller notes are gold here: use their specifics (dates of renovations, what's included, quirks) in their own terms.
 - **The agent's recommended list price**, and how firm it is.
+- Photos of the property, if the agent has them (phone snapshots are fine; say in Preparing for Market that professional photography will replace them, and note anything a photo shows that needs fixing before the shoot, such as an empty pool).
 - Anything the agent already has: a CMA, the pricing estimator output, comps they want shown, the seller's notes or concerns.
 
 ## 2. Find the comps
@@ -64,7 +65,7 @@ Copy the shape of `references/example-spec.json`. Fields:
 | `agent` | `name`, `email`, `cell`, `headshot` (absolute path to the photo downloaded from the Drive folder, or omit) |
 | `property` | `title` (e.g. `5 & 6 Granard`), `locality` (bay or area, quarter, `St. Croix`) |
 | `agentProfile` | `statsKicker`, `stats` (value + label), `paragraphs`, `notableHeading`, `notable` (property, quarter, price rows), `source` (`Sea Glass Properties MLS closed-sale records, <month year>.`) |
-| `propertySection` | `intro`, `groups` (heading + bullets or paragraphs), `footnote` for anything still to be confirmed |
+| `propertySection` | `intro`, optional `photos` (list of `{ "file": absolute path, "caption": "..." }`; the first runs full width, so lead with the strongest view, and the rest sit in pairs), `groups` (heading + bullets or paragraphs), `footnote` for anything still to be confirmed |
 | `market` | `intro`, `tables` (heading, intro, columns with relative `weight`, rows; `{ "note": "..." }` and `{ "group": "..." }` rows are allowed) |
 | `pricing` | `price`, `coverNote`, `intro`, `buildUp` (label, detail, amount, `style`: line/subtotal/total), `after` paragraphs, optional `closing` |
 | `value` | `bullets` (strengths the comps don't capture), `buyerBullets` (opportunities a buyer may consider) |
