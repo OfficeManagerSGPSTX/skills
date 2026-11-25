@@ -1,11 +1,14 @@
 ---
 name: "sgp-seller-pricing-presentation-luxury"
-description: "Builds a Sea Glass Properties luxury seller pricing presentation PDF for a St. Croix listing from the approved 18 South Grapetree template: comps, cumulative days, price range, costs, prep, marketing."
+description: "Builds a Sea Glass Properties seller pricing presentation PDF for a St. Croix listing at any price, from the approved 18 South Grapetree template: comps, cumulative days, price range, costs, prep, and (at $1M and up) the luxury marketing page."
 ---
 
 # Sea Glass seller pricing presentation (St. Croix luxury)
 
-Use this when any Sea Glass agent (Sanni wrote the rules) wants a list price and likely sale price for a listing, a pricing recommendation to show or send to owners, or says "do it like 18 South Grapetree." The output is a 9-page portrait PDF (8.5 x 11), or 8 pages when the agent drops Preparing for market. The agent sends it. Never send it yourself.
+Use this when any Sea Glass agent (Sanni wrote the rules) wants a list price and likely sale price for a listing, a pricing recommendation to show or send to owners, or says "do it like 18 South Grapetree." The output is a portrait PDF (8.5 x 11) in one of two versions, which differ by one page:
+- **$1M and up:** 9 pages, including page 8, "Where buyers will see your home" (Luxury Portfolio, LeadingRE and the luxury syndication sites), and the Luxury Portfolio logo on the cover and the recommendation page.
+- **Under $1M:** 8 pages. Delete page 8, both Luxury Portfolio logos, and "Luxury Portfolio and" in the network page's opening paragraph (it then reads "and through LeadingRE worldwide"); everything else is the same.
+The version follows the recommended list price (the top of a range). If a range straddles $1M, ask the agent which version. Dropping Preparing for market removes one more page. The agent sends it. Never send it yourself.
 
 ## Always use the approved template
 Sanni wants every pricing presentation to look exactly like the 18 South Grapetree Bay deck (Nov 2026). Do not redesign it.
@@ -31,7 +34,7 @@ Sanni wants every pricing presentation to look exactly like the 18 South Grapetr
 
 ## The presenting agent (page 9 and the cover)
 Every agent can use this deck, so nothing about the agent is written in by hand or kept in a saved copy. Look it up each time:
-1. **Roster:** the "Current Agents" tab of the SGP team roster (Google Sheet `1u_78xVR_LzZyNsuH7HAMW0qLPlagTB5kUBi0USFbOIE`) through the Google Sheets connector. Only `Status` of `Active` or `Manager` is current; a blank `Status` means the person no longer works here, so stop and tell the user. Take the email from `SGP Email` (lowercase it) and the cell from `Cell`. The roster has no title column: print "Realtor®", except Sanni Craft, who is "Managing Broker" (the same rule as the sgp-listing-presentation skill).
+1. **Roster:** the "Current Agents" tab of the SGP team roster (Google Sheet `1u_78xVR_LzZyNsuH7HAMW0qLPlagTB5kUBi0USFbOIE`) through the Google Sheets connector. Only `Status` of `Active` or `Manager` is current; a blank `Status` means the person no longer works here, so stop and tell the user. Take the email from `SGP Email` (lowercase it) and the cell from `Cell`. The roster has no title column: print "Realtor®", except Sanni Craft, who is printed as "Broker" (she is the managing broker; her decks say "Broker").
 2. **Photo:** the shared SGP agent photo folder in Google Drive (folder `14aAbNJcsOpnUytokjwAAg6eOs96Uuiy_`), matched by name, through the Drive connector (the download is saved to a file). Prefer the newest photo in the folder itself. Crop it to a 92 x 116 portrait around the face and save it as `img/agent.jpg`. If the agent's photos look like different people, ask before using one. No match: say so, and do not reuse another agent's photo.
 3. **Numbers, from Flexmls:** the agent's own St. Croix closed sales. Agent fields are not searchable in Flexmls, so pull and filter the records yourself: see `references/mls-query-notes.md`, "Agent closed sales". Count a record when it is `Closed`, is not a lease (property types `S`, `T`, `U`, or a rent-sized price) and the agent's email is in any of the four agent email fields; count each listing once. Keep the list of MLS numbers behind every figure and give it to the agent in chat.
 4. **Rankings ("#2 agent, St. Croix 2026") only when verified:** rank against every St. Croix agent's closed volume for the same period, both sides counted, from two separate pulls that agree, and print the source line with the dates. If you can't do both pulls, replace the three ranking figures with the agent's own verified figures in the same slots: sales closed, sales volume, and sales over $1 million, with the period.
@@ -95,7 +98,7 @@ Compact table at the list price (or both ends of a range):
 NAR-compliant wording: fees are fully negotiable and not set by law; offering buyer's agent compensation is the seller's decision; it is not advertised on the MLS and is agreed only as the seller directs; figures are at list price; attorney and closing costs are separate; not tax or legal advice.
 
 ## Step 5: Page order (9 pages, as in the template)
-1. **Cover:** full-bleed best photo, levelled using the house's lines when no horizon shows. Navy gradient overlay on no more than one third of the page, thin white inset frame, "Pricing Recommendation", "ADDRESS | LABEL" in one font ("Waterfront" only when the home is on the water; otherwise the estate or neighborhood name), "Area · St. Croix · U.S. Virgin Islands" directly under. Sea Glass St. Croix and LeadingRE logos on every listing; Luxury Portfolio on listings over $1M.
+1. **Cover:** full-bleed best photo, levelled using the house's lines when no horizon shows. Navy gradient overlay on no more than one third of the page, thin white inset frame, "Pricing Recommendation", "ADDRESS | LABEL" in one font ("Waterfront" only when the home is on the water; otherwise the estate or neighborhood name), "Area · St. Croix · U.S. Virgin Islands" directly under. Sea Glass St. Croix and LeadingRE logos on every listing; Luxury Portfolio only at $1M and up.
 2. **The home buyers will see:**
    - **Lead paragraph: positive, negative, positive, in a kind, constructive way.** Open with what makes the home strong (turnkey, true luxury updates, bedrooms plus apartment, garage, setting). Name the one real drawback plainly in a single sentence (for example, no sea view). Close on what is ready and good.
    - Key-number band (beds, baths, acreage or interior size, plus one standout such as solar panels or a guest apartment).
@@ -105,8 +108,8 @@ NAR-compliant wording: fees are fully negotiable and not set by law; offering bu
 4. **Two more St. Croix closed sales** (no-view or similar-setting homes when the subject has no view; St. Thomas only when the agent asks), plus the sale price vs. first asking price chart. No price per square foot.
 5. **Competition:** six active listings with combined days and the year first listed. Title by price bracket when the home isn't waterfront ("For Sale Today · $1.4M to $1.7M").
 6. **Recommendation:** navy page with the price, the two cards, Why this price, selling costs table.
-7. **Preparing for market:** Finish before photos, Staging, Paperwork. No contact box. Don't list repairs on a turnkey home. **Drop this page only when the agent asks** (for example a turnkey home that is ready to go); the deck is then 8 pages and the footers renumber to 07 and 08.
-8. **Where buyers will see your home:** syndication collage and site list.
+7. **Preparing for market:** Finish before photos, Staging, Paperwork. No contact box. Don't list repairs on a turnkey home. **Drop this page only when the agent asks** (for example a turnkey home that is ready to go). Footer page numbers renumber on their own.
+8. **Where buyers will see your home ($1M and up only):** syndication collage and site list. Under $1M this page is left out.
 9. **A network that reaches the buyer (always last):** office map, network stats, and About the agent. Build the agent block as in "The presenting agent" below.
 
 ## Step 6: Check and deliver
