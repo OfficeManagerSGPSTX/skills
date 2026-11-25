@@ -1,0 +1,142 @@
+{
+  "output": "5 & 6 Granard - Listing Presentation - Prepared by Cindy Devlin of Sea Glass Properties Nov 2, 2026.docx",
+  "date": "Updated November 2, 2026",
+  "preparedFor": "Athena Perlmutter and Francois Koutchouk",
+  "agent": {
+    "name": "Cindy Devlin",
+    "title": "Realtor®",
+    "team": "Team Devlin Devaney",
+    "email": "cindy@seaglassproperties.com",
+    "cell": "340.626.3032",
+    "headshot": "cindy-devlin.jpg"
+  },
+  "property": {
+    "title": "5 & 6 Granard",
+    "locality": "Ha'Penny Bay, Company Quarter, St. Croix"
+  },
+  "agentProfile": {
+    "statsKicker": "Cindy Devlin, St. Croix closings since 2021",
+    "stats": [
+      { "value": "87", "label": "Sales closed" },
+      { "value": "$32.8M", "label": "In sales represented" },
+      { "value": "43", "label": "Sold as listing agent" },
+      { "value": "$2M", "label": "Largest listing sold" }
+    ],
+    "paragraphs": [
+      "Cindy has closed 87 St. Croix sales since 2021 across homes, condominiums, land and commercial property, from a $20,000 homesite to a $2M estate. She works as half of Team Devlin Devaney with Justin Devaney, so two agents cover your showings and your closing.",
+      "She prices by category, not by hope. Land on St. Croix trades at a larger discount to asking than homes or condominiums, and she tells owners that before the sign goes up, not after six months without an offer."
+    ],
+    "notable": [
+      ["355 Whim (Two Will)", "WE", "$2,000,000"],
+      ["40 Concordia", "NB", "$1,100,000"],
+      ["17 Strand Street", "FR", "$950,000"],
+      ["161 La Vallee", "NB", "$805,000"]
+    ],
+    "source": "Flexmls closed sales, St. Croix, each sale counted once. Data as of October 19, 2026, covering 87 closings from December 2021 through September 2026; listing-side counts include co-listings. 68 of the 87 were worked with Justin Devaney, 19 were Cindy's alone. St. John MLS and off-MLS sales are not included. Information deemed reliable but not guaranteed."
+  },
+  "propertySection": {
+    "intro": "5 & 6 Granard is two adjoining parcels, about 2.5 flat acres in total, on Ha'Penny Bay, with no immediate neighbors. Owning both gives a buyer something rare on St. Croix: a home with its own private beachfront lot, and a view that no future neighbor can build in front of.",
+    "groups": [
+      { "heading": "Parcel 6: The Home", "bullets": [
+        "Main house, 2 bedrooms and 2 baths, plus a separate guest cottage",
+        "2,366 sq ft of living space on about 1.5 flat acres",
+        "Remodeled primary bath and updated kitchen",
+        "Pool and outdoor kitchen, with panoramic water views",
+        "Large water cisterns, renovated October 2026",
+        "Solar, battery backup and a standby generator, with a zero electric bill",
+        "Fenced and gated, with no immediate neighbors"
+      ] },
+      { "heading": "Parcel 5: The Beach Lot", "bullets": [
+        "About 1.0 acre running to the water on Ha'Penny Bay",
+        "White sandy beach frontage, about 200 ft per prior MLS records",
+        "Cleared, flat and buildable",
+        "About 200 yards from the house"
+      ] },
+      { "heading": "Also Included", "bullets": [
+        "Existing container foundation",
+        "Toro riding mower, about $6,000 value",
+        "A golf cart for showings, to be included with the property if purchased"
+      ] }
+    ],
+    "footnote": "Acreage, beach frontage and zoning are from prior MLS listings and will be confirmed against the deeds and survey before listing."
+  },
+  "market": {
+    "intro": "St. Croix is a small market, and no recent sale combines a home with its own separate beachfront lot. So each parcel is compared with the sales that fit it best: beachfront land for Parcel 5, and water-view homes with pools for Parcel 6. All figures are closed sale prices from the MLS.",
+    "tables": [
+      {
+        "heading": "Waterfront Land Sales",
+        "intro": "Nine recent waterfront lot sales closed between $255,000 and $750,000. Most fall between $255,000 and $390,000. Sandy beach, flat ground and a cleared site sit at the upper end.",
+        "columns": [
+          { "label": "MLS #", "weight": 1.25 }, { "label": "Estate", "weight": 2.35 }, { "label": "Qtr", "weight": 0.8 },
+          { "label": "Acres", "weight": 1.1 }, { "label": "Sold", "weight": 1.65 }, { "label": "Sold Price", "weight": 2.5 }
+        ],
+        "rows": [
+          ["26-529", "Shoys", "EA", "1.36", "Aug 2026", "$750,000"], { "note": "White sandy beach in a gated community. The top of the beachfront lot market." },
+          ["25-254", "North Slob", "EB", "1.01", "Apr 2026", "$390,000"],
+          ["25-1568", "Cane Bay", "NB", "3.72", "Jul 2026", "$375,000"],
+          ["22-73", "Turner's Hole", "EB", ".72", "Oct 2025", "$350,000"], { "note": "203 ft of beachfront on the south shore." },
+          ["25-1397", "Judith's Fancy", "QU", "1.18", "Jun 2026", "$320,000"],
+          ["24-209", "Little Princesse", "CO", ".70", "Jun 2024", "$300,000"], { "note": "Sandy beach, Company Quarter." },
+          ["22-74", "Turner's Hole", "EB", ".90", "Oct 2025", "$275,000"],
+          ["24-1058", "South Grapetree", "EB", "1.00", "Aug 2024", "$260,000"],
+          ["24-933", "Judith's Fancy", "QU", ".79", "Feb 2025", "$255,000"], { "note": "100+ ft of sandy beachfront, flat." }
+        ]
+      },
+      {
+        "heading": "Water-View Homes With Pools",
+        "intro": "Recent water-view homes with pools closed between $237 and $628 per sq ft, with a median of $429 per sq ft.",
+        "columns": [
+          { "label": "MLS #", "weight": 1.15 }, { "label": "Estate", "weight": 2.3 }, { "label": "Bd/Ba", "weight": 0.9 },
+          { "label": "Sq Ft", "weight": 1.05 }, { "label": "Acres", "weight": 0.95 }, { "label": "Sold Price", "weight": 1.9 }, { "label": "$/Sq Ft", "weight": 1.4 }
+        ],
+        "rows": [
+          ["26-1859", "Cotton Valley", "3/3", "2,800", "1.80", "$1,200,000", "$429"], { "note": "Panoramic water view, pool, similar acreage." },
+          ["25-1799", "Anna's Hope", "4/4", "2,533", ".70", "$1,590,000", "$628"],
+          ["26-350", "Solitude", "3/2", "1,900", ".79", "$875,000", "$461"],
+          ["26-1439", "Catherine's Hope", "2/2", "2,298", ".57", "$813,500", "$354"], { "note": "Closest in size to the main house." },
+          ["26-1387", "North Grapetree", "2/2", "3,374", "1.81", "$800,000", "$237"]
+        ]
+      }
+    ]
+  },
+  "pricing": {
+    "price": "$1,450,000",
+    "coverNote": "Both parcels offered together: the home on Parcel 6 and the beachfront lot on Parcel 5",
+    "intro": "I recommend listing both parcels together at $1,450,000. Here is how the two parts support that figure:",
+    "buildUp": [
+      { "label": "Parcel 6, the home", "detail": "2,366 sq ft at $429 per sq ft, the median for recent water-view homes with pools. The guest cottage, updated kitchen, panoramic view and power backup support pricing at the median.", "amount": "$1,015,000" },
+      { "label": "Parcel 5, the beach lot", "detail": "Above the $255,000 to $390,000 core range for waterfront lots, for a flat, cleared site with sandy beach and access to an established home next door. Below the $750,000 gated Shoys sale. I will walk the lot before we finalize this figure.", "amount": "$425,000" },
+      { "label": "Supported value of both parcels", "amount": "$1,440,000", "style": "subtotal" },
+      { "label": "Recommended list price", "detail": "Rounded to $1,450,000, leaving a small margin for negotiation.", "amount": "$1,450,000", "style": "total" }
+    ],
+    "after": [
+      "Selling the parcels together protects the home's beach access and its view. If Parcel 5 were sold on its own, a buyer could build between the house and the beach. We can talk through whether to also offer the parcels separately, and what that would mean for the home's value."
+    ]
+  },
+  "value": {
+    "bullets": [
+      "A private sandy beach, which is rare on St. Croix",
+      "A second buildable parcel on the water, with an established home, water and power already next door",
+      "A zero electric bill from solar and battery backup, with a generator for outages",
+      "Renovated cisterns, completed October 2026",
+      "Privacy: flat, fenced land with no immediate neighbors",
+      "A guest cottage separate from the main house"
+    ],
+    "buyerBullets": [
+      "Building on Parcel 5",
+      "Further updates to the main house",
+      "Using the guest cottage as a short-term rental, subject to local rules"
+    ]
+  },
+  "preparingForMarket": {
+    "groups": [
+      { "heading": "Guest Bathroom", "paragraphs": ["You have been weighing a small renovation of the guest bath. Two options to consider:"], "bullets": ["Minimum: upgrade fixtures and open the shower", "Full: the minimum, plus new flooring and vanity"] },
+      { "heading": "Showings", "paragraphs": ["Given the distance between the house and the beach lot, a golf cart makes showings easier. If you purchase one, it would be included with the property. I will let you know of any I hear of."] },
+      { "heading": "Photography", "paragraphs": ["We will schedule professional photography once any bathroom work is finished, so every image shows the property as it will be sold."] }
+    ]
+  },
+  "marketingExtras": {
+    "events": []
+  },
+  "stampTax": "For homes between $1M and $5M, the stamp tax is 3%. It is traditionally paid by the seller but is now often part of the negotiation. The MLS requires this field to be entered as Seller, Buyer or Negotiable, and we would list it as Negotiable."
+}
