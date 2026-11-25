@@ -63,7 +63,7 @@ Copy the shape of `references/example-spec.json`. Fields:
 | `date` | Shown on the cover, e.g. `November 2, 2026`, or `Updated November 9, 2026` for a revision |
 | `preparedFor` | Owners' names |
 | `agent` | `name`, `email`, `cell`, `headshot` (absolute path to the photo downloaded from the Drive folder, or omit) |
-| `property` | `title` (e.g. `5 & 6 Granard`), `locality` (bay or area, quarter, `St. Croix`) |
+| `property` | `title` (e.g. `5 & 6 Granard`), `locality` (bay or area, quarter, `St. Croix`), optional `coverPhoto` (absolute path to the strongest view, cropped to about 2:1 so the cover stays one page) |
 | `agentProfile` | `statsKicker`, `stats` (value + label), `paragraphs`, `notableHeading`, `notable` (property, quarter, price rows), `source` (`Sea Glass Properties MLS closed-sale records, <month year>.`) |
 | `propertySection` | `intro`, optional `photos` (list of `{ "file": absolute path, "caption": "..." }`; the first runs full width, so lead with the strongest view, and the rest sit in pairs), `groups` (heading + bullets or paragraphs), `footnote` for anything still to be confirmed |
 | `market` | `intro`, `tables` (heading, intro, columns with relative `weight`, rows; `{ "note": "..." }` and `{ "group": "..." }` rows are allowed) |

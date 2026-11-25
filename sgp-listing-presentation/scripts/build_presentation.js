@@ -198,15 +198,20 @@ function cover() {
     p(run(spec.property.title, { font: SERIF, size: 72, color: NAVY, bold: true }), { after: 60, line: 240 }),
     p(run(spec.property.locality, { size: 24 }), { after: 200 }),
     tealBar({ after: 360 }),
-    p(run("Prepared for " + spec.preparedFor, { size: 22 }), { after: 600 }),
+    p(run("Prepared for " + spec.preparedFor, { size: 22 }), { after: spec.property.coverPhoto ? 240 : 600 }),
   );
+  // Optional hero photo: full text width, keeps its own shape. Crop it wide (about 2:1) so the cover stays on one page.
+  if (spec.property.coverPhoto) {
+    const FULL = Math.floor(TEXT_W / 15) - 4, cs = imageSize(spec.property.coverPhoto);
+    out.push(p(image(spec.property.coverPhoto, FULL, Math.round((FULL * cs.h) / cs.w)), { after: 240 }));
+  }
   const pr = spec.pricing;
   out.push(table([TEXT_W], [new TableRow({ children: [cell([
     new Paragraph({ children: [run(pr.coverLabel || "RECOMMENDED LIST PRICE", { size: 17, bold: true, color: TEAL, spacing: 50 })], spacing: { before: 120, after: 60 }, indent: { left: 240 } }),
     new Paragraph({ children: [run(pr.price, { font: SERIF, size: 64, bold: true, color: WHITE })], spacing: { before: 0, after: 60 }, indent: { left: 240 } }),
     ...(pr.coverNote ? [new Paragraph({ children: [run(pr.coverNote, { size: 19, color: "CCD8E2" })], spacing: { before: 0, after: 140 }, indent: { left: 240 } })] : []),
   ], TEXT_W, { fill: NAVY, pad: 120 })] })]));
-  out.push(p([], { after: 600 }));
+  out.push(p([], { after: spec.property.coverPhoto ? 200 : 600 }));
   const head = A.headshot ? image(path.isAbsolute(A.headshot) ? A.headshot : path.join("assets/headshots", A.headshot), 84, 84) : null;
   const lines = [
     cp("PRESENTED BY", { size: 15, bold: true, color: OCEAN, spacing: 40 }),
