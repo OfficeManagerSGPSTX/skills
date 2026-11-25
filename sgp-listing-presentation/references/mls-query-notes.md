@@ -93,13 +93,17 @@ Tested November 2026:
   not searchable" and the clause is dropped. You cannot ask the MLS for "this agent's sales".
 - **`ListingsMyListings` returns the whole Sea Glass office**, about 1,240 records,
   buyer-side sales included, and sorts by `-CloseDate` correctly. Pull it with
-  `_orderby: -CloseDate`, `_limit: 25`, and
+  `_orderby: -CloseDate,+ListingId`, `_limit: 25`, and
   `_select: ListingId,UnparsedAddress,MlsStatus,PropertyType,ClosePrice,CloseDate,ListAgentEmail,CoListAgentEmail,BuyerAgentEmail,CoBuyerAgentEmail`,
   page until `CloseDate` is older than the period you are reporting, and filter yourself:
   `MlsStatus` is `Closed` and the agent's email appears in any of the four email fields.
-- **Leases look like sales.** `PropertyType` `S` records are rentals: `MlsStatus` `Closed`
-  with a `ClosePrice` of a month's rent ($1,500, $2,700). Always drop them or the sales
-  count is inflated. `A1` is residential; check the type of anything else before counting it.
+- **Leases look like sales.** `PropertyType` `S`, `T` and `U` records are rentals: `MlsStatus`
+  `Closed` with a `ClosePrice` of a month's rent ($875 to $7,500). Always drop them or the
+  sales count is inflated. Sales types seen: `A1` residential, `B1` condo, `C1` land.
+- **Paging is unstable on ties.** Records sharing a `CloseDate` shift between pages, so some
+  get skipped and others repeated. Sort `-CloseDate,+ListingId` to fix the order.
+- Every closed record sits on roughly the first 33 pages (back to 2021); after that the
+  records have no `CloseDate`. Some prices look like placeholders ($999,999); flag them.
 - **Email case is inconsistent** (`Caryn@BlueSkyVI.com`, and the roster has
   `Elizabeth@seaglassproperties.com`). Compare lowercased.
 - `ListAgentEmail` alone finds listing-side sales only. Buyer-side sales are in
