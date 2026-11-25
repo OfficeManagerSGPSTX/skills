@@ -52,7 +52,7 @@ const PAGE_W = 12240, MARGIN = 1296, TEXT_W = PAGE_W - 2 * MARGIN; // Letter, 0.
 
 // ------------------------------------------------------------ primitives
 const run = (text, o = {}) => new TextRun({ text, font: o.font || SANS, size: o.size || 21, color: o.color || INK, bold: o.bold, italics: o.italics, characterSpacing: o.spacing });
-const p = (children, o = {}) => new Paragraph({ children: Array.isArray(children) ? children : [children], alignment: o.align, spacing: { before: o.before ?? 0, after: o.after ?? 140, line: o.line ?? 300 }, indent: o.indent, keepNext: o.keepNext, numbering: o.numbering });
+const p = (children, o = {}) => new Paragraph({ children: Array.isArray(children) ? children : [children], alignment: o.align, spacing: { before: o.before ?? 0, after: o.after ?? 140, line: o.line ?? 300, lineRule: "auto" }, indent: o.indent, keepNext: o.keepNext, numbering: o.numbering });
 const body = (text, o = {}) => p(run(text, o), o);
 const small = (text, o = {}) => p(run(text, { size: 15, italics: true, ...o }), { before: 80, ...o });
 const kicker = (text, color = OCEAN, o = {}) => p(run(text.toUpperCase(), { size: 17, bold: true, color, spacing: 40 }), { after: 60, keepNext: true, ...o });
