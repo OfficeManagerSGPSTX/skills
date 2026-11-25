@@ -18,9 +18,9 @@ Ask the agent for whatever is missing, in one message, before doing anything els
 - **Presenting agent.** Look them up live in the "Current Agents" tab of the SGP team roster (Google Sheet `1u_78xVR_LzZyNsuH7HAMW0qLPlagTB5kUBi0USFbOIE`, https://docs.google.com/spreadsheets/d/1u_78xVR_LzZyNsuH7HAMW0qLPlagTB5kUBi0USFbOIE/edit) through the Google Sheets connector. Never use a locally saved copy of the roster; it goes stale. Match on the `Name` column (or `First Name` + `Last Name`; trim stray spaces, the headers have them).
   - **Status gate.** Only rows whose `Status` is `Active` or `Manager` are current. A blank `Status` means that person no longer works at Sea Glass: do not use them as the presenting agent, stop, and tell the user the named agent is not on the current roster.
   - **Contact details.** Email from `SGP Email` (write it in lowercase in the spec; the sheet capitalizes some), cell from `Cell`.
-  - **Title and team are not in the roster.** As of November 2026 the sheet has no title or team column. Omit `team` unless the agent tells you their team, and leave `title` out (the script prints `Realtor®`) unless the user gives you the title. Say in your reply which you defaulted, because a Broker or Manager printed as Realtor® is wrong in front of sellers.
+  - Sea Glass does not track titles or teams. Leave `title` and `team` out of the spec; the script prints `Realtor®`.
 - **Headshot.** Search the shared SGP agent photo folder (Google Drive folder `14aAbNJcsOpnUytokjwAAg6eOs96Uuiy_`, https://drive.google.com/drive/folders/14aAbNJcsOpnUytokjwAAg6eOs96Uuiy_) through the Google Drive connector, matching the file name to the agent's name (`'14aAbNJcsOpnUytokjwAAg6eOs96Uuiy_' in ancestors and title contains '<last name>'`, then confirm the first name). Download it into your working directory and pass the full absolute path as `agent.headshot`. If there is no match, or more than one plausible match, omit `headshot` and say so in your reply. Do not fall back to the old photos bundled in `assets/headshots/`; they are kept only so the example spec still builds.
-- **The agent's own stats.** Do not ask the agent for a one-pager. Pull the agent's own closed sales from Flexmls and build the stat row and notable-sales table from those records. Read "Agent closed sales" in `references/mls-query-notes.md` first: in a November 2026 test the agent email fields were **not searchable**, and leases come back as closed sales, so you have to pull and filter the records yourself.
+- **The agent's own stats.** Do not ask the agent for a one-pager. Pull the agent's own closed sales from Flexmls (closed records show the agents on both sides, the same data the social media automations use) and build the stat row and notable-sales table from those records. Read "Agent closed sales" in `references/mls-query-notes.md` first: in a November 2026 test the agent email fields were **not searchable**, and leases come back as closed sales, so you have to pull and filter the records yourself.
   - Count a record when `MlsStatus` is `Closed` and the agent's SGP email (case-insensitive) is in `ListAgentEmail`, `CoListAgentEmail`, `BuyerAgentEmail` or `CoBuyerAgentEmail`. Exclude rentals (`PropertyType` `S`) always. Count each `ListingId` once, even when the agent is on both sides.
   - Stats: sales count and total volume (sum of `ClosePrice`), plus listing-side count if it helps. State the period in `statsKicker` (for example, "Joe Caruso, Sea Glass closings since <month year of the first record>"). Do not show a rank: there is no source for one.
   - `notable`: the 3 to 6 highest or most relevant closings for this seller (property, quarter, price). `notableHeading`: "Notable listings sold" if every one is a listing-side sale; "Recent closings" if any buyer-side sale is in the table.
@@ -61,7 +61,7 @@ Copy the shape of `references/example-spec.json`. Fields:
 | `output` | File name: `<Property> - Listing Presentation - Prepared by <Agent> of Sea Glass Properties <Mon D, YYYY>.docx` |
 | `date` | Shown on the cover, e.g. `November 2, 2026`, or `Updated November 9, 2026` for a revision |
 | `preparedFor` | Owners' names |
-| `agent` | `name`, `title` (optional, defaults to Realtor®), `team` (optional), `email`, `cell`, `headshot` (absolute path to the photo downloaded from the Drive folder, or omit) |
+| `agent` | `name`, `email`, `cell`, `headshot` (absolute path to the photo downloaded from the Drive folder, or omit) |
 | `property` | `title` (e.g. `5 & 6 Granard`), `locality` (bay or area, quarter, `St. Croix`) |
 | `agentProfile` | `statsKicker`, `stats` (value + label), `paragraphs`, `notableHeading`, `notable` (property, quarter, price rows), `source` (`Sea Glass Properties MLS closed-sale records, <month year>.`) |
 | `propertySection` | `intro`, `groups` (heading + bullets or paragraphs), `footnote` for anything still to be confirmed |
@@ -103,7 +103,7 @@ Give the agent the `.docx`, and save the spec next to it (same name, `.json`) so
 In your reply, list briefly:
 - the recommended price and how the build-up gets there
 - anything to confirm before the meeting (facts from old listings, seller claims, comps you had doubts about)
-- the agent details you defaulted (title, team) and whether a headshot was found
+- whether a headshot was found
 - the MLS numbers behind the agent's stats
 - anything you left out and why (for example, no stat row because the agent has no Sea Glass closings yet)
 
