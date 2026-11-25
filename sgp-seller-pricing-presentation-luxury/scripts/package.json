@@ -1,0 +1,11 @@
+{
+  "name": "sgp-office-map",
+  "private": true,
+  "description": "Builds assets/img/office-map.svg for page 9 of the Sea Glass pricing deck.",
+  "dependencies": {
+    "d3-geo": "3.1.1",
+    "topojson-client": "3.1.0",
+    "us-atlas": "3.0.1",
+    "world-atlas": "2.0.2"
+  }
+}
