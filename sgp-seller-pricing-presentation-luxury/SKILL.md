@@ -1,0 +1,107 @@
+---
+name: "sgp-seller-pricing-presentation-luxury"
+description: "Builds a Sea Glass Properties luxury seller pricing presentation PDF for a St. Croix listing from the approved 18 South Grapetree template: comps, cumulative days, price range, costs, prep, marketing."
+---
+
+# Sea Glass seller pricing presentation (St. Croix luxury)
+
+Use this when Sanni (or a Sea Glass agent) wants a list price and likely sale price for a listing, a pricing recommendation to show or send to owners, or says "do it like 18 South Grapetree." The output is a 9-page portrait PDF (8.5 x 11), or 8 pages when the agent drops Preparing for market. The agent sends it. Never send it yourself.
+
+## Always use the approved template
+Sanni wants every pricing presentation to look exactly like the 18 South Grapetree Bay deck (Nov 2026). Do not redesign it.
+- **Template HTML:** Listing writer project doc `claude/templates/seller-pricing-presentation-template.html`. Read it with the Projects tool (`project_read`) and save it as `deck.html` in a working folder. Full how-to notes: `claude/templates/seller-pricing-presentation-instructions.md` in the same project.
+- **Area pricing guide:** `claude/st-croix-area-pricing-guide.md` in the same project (price tiers by area, view premium, elevation, flood zones, amenities by area). Read it before choosing comps. Refresh it when it is more than six months old.
+- **Assets kit:** `sgp-pricing-presentation-template.zip` in Sanni's Google Drive, Claude folder (Drive file ID `1CF9YVBVBbPSABEH1HrYLgkKB51P116CV`). Download it with the Drive connector (the result is saved to a file; base64-decode its `content`), unzip into a fresh folder. It holds `img/` (Sea Glass St. Croix logos normal and reverse, LeadingRE, Luxury Portfolio, agent photo, office map.svg, coverage.jpg collage, devices.png, water.jpg background), `fonts/` (Playfair Display, Montserrat) and `render.py`.
+- Logos only, as a backup: the Sea Glass design system artifact (claude.ai/artifact/7J8ZJ4LjW7MbEeXdmAYev8), `project/assets/logos/`.
+- If the kit can't be reached, ask for it before building. Do not substitute other fonts, logos or layouts.
+- Change only the content: text, numbers and the property photos (`img/cover-house.jpg`, `img/s1-s6.jpg` for sold comps, `img/a1-a6.jpg` for active competition). Keep classes, sizes, colors, spacing and page order.
+- A practical build: split the template into `head.html` (styles up to the cover), `body.html` (pages 1 to 6) and `tail.html` (marketing and network pages), edit `body.html`, then `cat head.html body.html tail.html > deck.html`.
+- Property photos: MLS photos download directly from the Flexmls `Uri800` links. Listing photos in the agent's Drive folder come through the Drive connector.
+- Render with `python3 render.py deck.html out.pdf` (Playwright with Chrome, 8.5in x 11in, backgrounds on).
+- The finished PDF is usually over the Drive connector's upload limit; send it in chat and tell the agent to file it.
+
+## Hard rules
+- Verify every number in two places (MLS, Tax Assessor, Recorder of Deeds). If it cannot be verified, leave it out. Never write a claim you have not checked (for example "on your street").
+- No em dashes anywhere. Never use "nestled." Plain, professional, not rosy.
+- Teal (#00ABAA) only on lines, accents and numbers, never on body text. White page backgrounds, navy #003E69, blue #0090B4. No pink or sunset tints in photos or colors.
+- Fair housing word list applies ("quiet," not "safe"; never "exclusive neighborhood").
+- Never put owner names or client details in memory files.
+- Start chat replies with "Sanni" on its own line. Push back with your own take when the data says something different.
+- When Sanni gives a new rule, save it the same turn: project memory preferences, the instructions doc and this skill. One-off changes she says are "just for this one" stay out of the rules.
+
+## Step 1: Gather facts
+1. Ask what is not known: beds, baths, interior size, acreage, what is finished and what is not, furnished or not, special features, view (and from which floor), the agent's listing fee for this property, single price or range, which sales to exclude, and photos. Check the property's Drive folder and any earlier research doc first.
+2. **Recorder of Deeds:** run the **sgp-pre-listing-records-check** skill. Pull every recorded restriction, easement, covenant, HOA declaration and HOA document, waiver, forbearance and lien, with instrument numbers. Confirm the names and plot number on each match the property. Owner-supplied size goes in the deck with a note that it will be confirmed with the Tax Assessor or by measurement. Flag unpaid property tax and who signs for an LLC owner to the agent, outside the deck.
+3. **Location check (always, for every property):**
+   - **Confirm the parcel first:** click the lot on MapGeo (usvi.mapgeo.io) and check the parcel ID; Google Maps should read the pin as the street address. MLS map pins can sit off the house.
+   - **FEMA flood zone:** look it up on FEMA's National Flood Hazard Layer for the house and, on waterfront lots, the shoreline. Record the zone, FIRM panel number and effective date. Working method in Claude in Chrome: open any page on the API's own host, then `fetch` NFHL ArcGIS layer 28 (zones) and layer 3 (panels) with the house's lat/lon (`https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/28/query?geometry=LON,LAT&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=FLD_ZONE,ZONE_SUBTY&returnGeometry=false&f=json`). Run many lookups with a small Promise pool; sequential fetches time out. Read results back in chunks of about 40 because long output is truncated.
+   - **Topography:** read the lot on a topographic map (USGS topoView / The National Map, or Google Earth terrain). Note whether the house sits on a hillside, ridge, valley floor or flat coastal ground, and the slope of the lot.
+   - **Elevation for view:** pull USGS elevations (`https://epqs.nationalmap.gov/v1/json?x=LON&y=LAT&units=Feet&wkid=4326`) at the house and every 150 to 1,200 m in eight directions, and use Google Earth (elevation readout and the ground-level / 3D view from the house pad). Decide from that line of sight whether the house can see water, from which floor, and what blocks it (hills, trees, neighboring houses).
+   - **Where the view is, if any:** the direction the home faces (N, NE, SSW, etc.) and what the view takes in: open sea, a bay, the reef, Buck Island, Christiansted harbor, neighboring islands, hills, a golf course. Never rely on MLS wording; Sanni's own knowledge of the house wins when it conflicts.
+   - **Distance to things:** drive time and miles from two sources, Google Maps in driving mode (URL ending `/data=!4m2!4m1!3e0`, parse "N min X mi") and OSRM (`router.project-osrm.org/route/v1/driving/...`). Use a number only when the two roughly agree; otherwise say "close to" with no number. Never use walking-mode numbers. Cover the nearest beaches, grocery and stores, restaurants, hotels and resorts, golf, marinas, diving and water sports, Christiansted or Frederiksted, the airport and the hospital, and cultural and historic sites. Use only places that are open and verified. The St. Croix neighborhoods, recreation and area pricing guides in the project are a starting point, not a source.
+   - **Comps get the full view check too (Sanni):** for every sold comp and every active competitor, confirm the parcel on MapGeo, then run the same USGS elevation sightline as the subject (elevation at the house and every 150 to 1,200 m in eight directions), read the topography, and check the photos. Record for each: elevation, hillside / ridge / valley / flat coastal, view yes or no, which direction, and what it takes in. Run the lookups in parallel (a small Promise pool in Claude in Chrome) so it stays quick. A comp with a view does not compare one to one with a home without one; say so in the note and the pricing logic. Keep the results in a working table with the deck files so the agent can see them.
+   - **When there are no photos to back it up (Sanni):** photos are one source, not a requirement. Decide the view from the elevation sightline, topography, Google Earth, the MLS View field and remarks, and the agent's own knowledge of the house. Mark it in the working table as "view from elevation and map, not photo-confirmed" and ask the agent if she knows the house. In the deck, say "sea view" only when at least two sources agree; otherwise describe the setting ("hillside, 250 ft, faces the south shore") without promising a view. Never invent a view the data does not support.
+4. **Where it goes in the deck:** location, view, elevation and the nearby list go on page 2 (the lead and "What sets it apart") and in "Why this price" when they drive value. Flood zone goes in "What sets it apart" when it helps (for example "FEMA Flood Zone X"). Recorded restrictions, easements and HOA items stay out of the deck; report them to the agent separately with the seller email block from the records-check skill.
+
+## Location tiers and view (Sanni)
+- Compare like with like by location. West End homes do not sell for the same as East End homes; never use a West End sale to support an East End price, or the reverse, without saying so.
+- Highest first: Shoys / Anna's Hope (EA) is the most expensive neighborhood; the East End keeps getting high prices; Judith's Fancy and Ms Bea road (East End, Estate Green Cay) come next, below Shoys. The MLS does not name the road, so match a sale to Ms Bea road by plot number or map.
+- Homes with a sea view carry a premium (roughly 40% to 70% in the same area, Nov 2026 study). Pull comps from the same tier and view class first. Full tier table: project doc `claude/st-croix-area-pricing-guide.md`.
+- Set the comp, competition and timing bracket around each subject's own expected price (roughly 70% to 140%), never the last deck's bracket.
+
+## Step 2: Comps and market data (Flexmls)
+- Property type A1 (residential). Run SemanticSearchListingMetadata before ListingsListingSearch. The MLS covers St. Croix and St. Thomas.
+- **Lookback:** only homes that **closed in the last two years.**
+- **Island rule (Sanni, Nov 2026): compare to St. Croix only, at every price.** That covers sold comps, active competition, the timing card and the sale price vs. first asking price chart. Use St. Thomas only when the agent asks for it.
+- **Price bracket is set per subject (Sanni).** Build the bracket for sold comps, competition and the timing card around this subject's own expected price (roughly 70% to 140% of it). Never reuse the last deck's bracket. Name the bracket in the timing card and on the competition page title.
+- **Location tiers (Sanni).** Compare like with like by location. East End homes can be checked against other areas, but West End homes do not sell for the same as East End homes; never use a West End sale to support an East End price, or the reverse, without saying so. Highest first: Shoys / Anna's Hope (EA) is the most expensive neighborhood; the East End (EA and EB, especially the coast) keeps getting high prices; Judith's Fancy and Miss Bea road come next, below Shoys. Use the area pricing guide for the full tier table. If you do not know where a road or estate sits, ask the agent; do not guess.
+- **View premium (Sanni).** Homes with a sea view sell for more (in the Nov 2026 study, roughly 40% to 70% more within the same area). Put the subject in a view class (waterfront, sea view, low ground with MLS view to be checked, golf view, no view) and pull comps from the same class first. For a no-view home in a view area, look for no-view or golf-view comps in the same tier and price below the view comps.
+- **Days on market are always combined (Sanni's rule): the house was out there trying to sell.** If a home came off the market briefly, expired and was relisted within a few months, or changed agents, add those days together. Do this for every sold comp, every active competitor AND every home behind the timing card.
+  - Search each address with Expired, Withdrawn and Cancelled statuses (no price filter) using an Or-chain of `UnparsedAddress Eq contains('...')`. Do not add a date clause or parentheses around the chain; the API rejects the extra nesting. Try address variants ("15 B&D", "15 &", plot numbers).
+  - Add every earlier listing that led into the next one, even if it started more than two years ago. **A home that came off the market for 45 to 60 days still counts as one long period: add the days up (Sanni).**
+  - Do not combine listings years apart or listings that ended in an earlier sale.
+  - After combining, restate every median that used days.
+- **First asking price** = the first list price in that chain, even if a later relist was higher. **Price cut** = any reduction, including a relist at a lower price.
+- **Private "for comps only" sales (Sanni):** listings entered for comps only (0 to 1 day on market) can be shown as price comps, but never count in any days-on-market figure or the timing card. Outliers come out with the agent's OK.
+- **Timing card** (homes in the subject's bracket): median days on market; % of first asking price for homes sold within 90 days vs. longer; median days for homes that needed a price cut vs. those that did not. State the count, the date range, that comps-only private sales are left out, and that days are combined when a home came off for up to 60 days and went back on.
+- **Never show price per square foot (Sanni, Nov 2026):** too many listings have square footage entered incorrectly. In its place, use a **sale price vs. first asking price** chart: each comp's close as a % of its first list price (leave comps-only private sales off it). If the subject's square footage is unknown or conflicting, leave it out of the number band.
+- **Competition:** check every active listing's status again right before delivery. Replace any the agent says is under contract or not relevant with the next best St. Croix listing in the bracket. If the agent wants an under-contract home kept, change its badge to "Under contract · X days". If the agent says a competitor is not comparable in quality, keep it only when asked and add a short note ("Not comparable in quality to your home.").
+- Pull photos with ListingsListPhotos. **Every comp and competitor photo must show the house itself, not just the view (Sanni).** Pick an exterior, aerial or pool shot with the home clearly in frame; skip view-only shots and photos with text overlays (crop the text off if it is the only good shot). Look at each one before placing it.
+
+## Step 3: Pricing
+- A **range**, split into "As is" (must-do items done) and "Finished for photos" (top of the range). If the agent sets a single price, show that price and use the second card for a review point (for example "60 days"). Use the agent's own words for the review point when she gives them (for example "I think this is a realistic and competitive ask. Let us see what feedback we get, then decide next steps together.").
+- Always include: "This is my recommendation based on what has sold on St. Croix in the last two years." Add "and St. Thomas" only when the agent asked for St. Thomas comps.
+- "Why this price": the best comparable sale, the closest match with its full history (first ask, combined days, what starting high cost it), the bracket and competing listings, the location tier and view class, and the home's edge.
+- If the data points below the agent's price (for example, a no-view home priced against view comps), build the deck at the agent's price but tell the agent plainly in chat, with the numbers, and suggest a firm review point.
+
+## Step 4: Selling costs (on the recommendation page)
+Compact table at the list price (or both ends of a range):
+- Seller's half of the VI stamp tax (confirm the current rate with title), proposed split 50/50 with the buyer.
+- Sea Glass listing fee (as the agent sets it).
+- **Buyer's agent commission request**, if made in an offer (usually 2% to 2.5%), priced in from the start.
+- Total line. Check the arithmetic by running it.
+
+NAR-compliant wording: fees are fully negotiable and not set by law; offering buyer's agent compensation is the seller's decision; it is not advertised on the MLS and is agreed only as the seller directs; figures are at list price; attorney and closing costs are separate; not tax or legal advice.
+
+## Step 5: Page order (9 pages, as in the template)
+1. **Cover:** full-bleed best photo, levelled using the house's lines when no horizon shows. Navy gradient overlay on no more than one third of the page, thin white inset frame, "Pricing Recommendation", "ADDRESS | LABEL" in one font ("Waterfront" only when the home is on the water; otherwise the estate or neighborhood name), "Area · St. Croix · U.S. Virgin Islands" directly under. Sea Glass St. Croix and LeadingRE logos on every listing; Luxury Portfolio on listings over $1M.
+2. **The home buyers will see:**
+   - **Lead paragraph: positive, negative, positive, in a kind, constructive way.** Open with what makes the home strong (turnkey, true luxury updates, bedrooms plus apartment, garage, setting). Name the one real drawback plainly in a single sentence (for example, no sea view). Close on what is ready and good.
+   - Key-number band (beds, baths, acreage or interior size, plus one standout such as solar panels or a guest apartment).
+   - **"What sets it apart": positives only.** No drawbacks anywhere in this card, including its closing navy line. Opens "At this price buyers expect X. Here everything is a level up.", one-line items. Add verified flood zone and drive times here when they help.
+   - Timing card beside it.
+3. **St. Croix closed sales:** four photo cards with first list price, combined days and a one-line note (say if the comp has a view, and its area when it is a different tier).
+4. **Two more St. Croix closed sales** (no-view or similar-setting homes when the subject has no view; St. Thomas only when the agent asks), plus the sale price vs. first asking price chart. No price per square foot.
+5. **Competition:** six active listings with combined days and the year first listed. Title by price bracket when the home isn't waterfront ("For Sale Today · $1.4M to $1.7M").
+6. **Recommendation:** navy page with the price, the two cards, Why this price, selling costs table.
+7. **Preparing for market:** Finish before photos, Staging, Paperwork. No contact box. Don't list repairs on a turnkey home. **Drop this page only when the agent asks** (for example a turnkey home that is ready to go); the deck is then 8 pages and the footers renumber to 07 and 08.
+8. **Where buyers will see your home:** syndication collage and site list.
+9. **A network that reaches the buyer (always last):** office map, stats, About the agent with verified MLS rankings and source line.
+
+## Step 6: Check and deliver
+- Render each page to PNG and look at it: no overflow, list items on one line, no orphan words, page count right, footer page numbers in order, network page last. (Crop page images with PIL; Playwright's element screenshot does not take `clip`.)
+- Footer edits in `tail.html`: it uses a literal `·`, not `&middot;`.
+- **Comp test (Sanni's most important rule):** every sold comp and every competitor must pass two tests: a comparable area (same or neighboring location tier) AND a comparable price (inside the subject's bracket). Also check the view class. A comp that fails either test comes out, or stays only with a note saying why it is there and how it differs.
+- Re-check every number in the deck against its source, and the selling-cost arithmetic.
+- Agent rankings: MLS closed volume, both sides, year to date, verified with two separate pulls; state source and dates.
+- Send the PDF and summarize in a few lines: what changed, the location findings (flood zone, elevation, view direction), the tier and view class used for comps, anything that still needs confirming, and your honest view on the price.
