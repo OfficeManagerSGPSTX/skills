@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Pricing Recommendation</title>
+<!--
+  Sea Glass seller pricing presentation, St. Croix luxury.
+  Rebuilt from the approved 18 South Grapetree Bay deck (November 2026).
+  Change only content: text, numbers and the photos in img/. Keep classes, sizes, colors and page order.
+  Build: cat head.html body.html tail.html > deck.html, with the img/ folder next to deck.html.
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=block" rel="stylesheet">
+<style>
+  /* Vendored fonts, if a fonts/ folder sits next to deck.html. Used when Google Fonts can't be reached. */
+  @font-face { font-family: "Playfair Display"; src: local("Playfair Display"), url("fonts/PlayfairDisplay-Regular.ttf"); font-weight: 400; font-style: normal; }
+  @font-face { font-family: "Playfair Display"; src: local("Playfair Display Italic"), url("fonts/PlayfairDisplay-Italic.ttf"); font-weight: 400; font-style: italic; }
+  @font-face { font-family: "Montserrat"; src: local("Montserrat Light"), url("fonts/Montserrat-Light.ttf"); font-weight: 300; }
+  @font-face { font-family: "Montserrat"; src: local("Montserrat"), url("fonts/Montserrat-Regular.ttf"); font-weight: 400; }
+  @font-face { font-family: "Montserrat"; src: local("Montserrat Medium"), url("fonts/Montserrat-Medium.ttf"); font-weight: 500; }
+  @font-face { font-family: "Montserrat"; src: local("Montserrat SemiBold"), url("fonts/Montserrat-SemiBold.ttf"); font-weight: 600; }
+
+  :root {
+    --navy: #003E69;
+    --blue: #0090B4;
+    --teal: #00ABAA;      /* lines, accents and numbers only, never body text */
+    --ink: #4A5560;
+    --soft: #6B7884;
+    --rule: #DCE3E8;
+    --tint: #E8EFF5;
+    --serif: "Playfair Display", Georgia, "Times New Roman", serif;
+    --sans: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+  }
+  @page { size: 8.5in 11in; margin: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: #fff; }
+  body { font-family: var(--sans); font-weight: 300; color: var(--ink); -webkit-print-color-adjust: exact; print-color-adjust: exact; counter-reset: pg; }
+
+  .page { width: 8.5in; height: 11in; position: relative; overflow: hidden; page-break-after: always; break-after: page; background: #fff; counter-increment: pg; }
+  .page:last-child { page-break-after: auto; break-after: auto; }
+  .page.white::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 5px; background: linear-gradient(90deg, var(--navy), var(--blue) 55%, var(--teal)); }
+  .inner { position: absolute; top: 56px; left: 56px; right: 56px; bottom: 0; }
+
+  /* Headings */
+  .eyebrow { font: 600 10px/1 var(--sans); letter-spacing: .28em; text-transform: uppercase; color: var(--blue); margin-top: 6px; }
+  h1 { font: 400 34px/1.15 var(--serif); color: var(--navy); margin-top: 12px; }
+  h1 + .rule, .rule { width: 63px; height: 3px; background: var(--teal); margin: 16px 0 0; }
+  .lead { font: 300 13.5px/1.68 var(--sans); color: var(--ink); margin-top: 26px; max-width: 640px; }
+  h3 { font: 400 22px/1.2 var(--serif); color: var(--navy); }
+  .kicker { font: 600 8.5px/1 var(--sans); letter-spacing: .24em; text-transform: uppercase; color: var(--blue); }
+  .italic-note { font: italic 400 12.5px/1.6 var(--serif); color: var(--ink); }
+  .fine { font: 300 8.5px/1.35 var(--sans); color: var(--soft); }
+
+  /* Footer: page numbers count automatically, so dropping a page renumbers the rest */
+  .footer { position: absolute; left: 56px; right: 56px; bottom: 28px; height: 35px; border-top: 1px solid var(--rule); display: flex; align-items: flex-end; justify-content: space-between; }
+  .footer img { height: 23px; display: block; }
+  .footer .ft { font: 400 8.5px/1 var(--sans); letter-spacing: .2em; text-transform: uppercase; color: var(--soft); padding-bottom: 6px; }
+  .footer .ft::after { content: "   \00B7   " counter(pg, decimal-leading-zero); white-space: pre; }
+  .footer.ondark { border-top-color: rgba(255,255,255,.22); }
+  .footer.ondark .ft { color: rgba(255,255,255,.75); }
+  .footer .partners { display: flex; align-items: center; gap: 30px; }
+  .footer .partners img { height: 30px; }
+
+  /* ---------- Cover ---------- */
+  .cover { background: var(--navy); }
+  .cover .photo { position: absolute; inset: 0; background-size: cover; background-position: center; }
+  .cover .shade { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,40,72,.88) 0%, rgba(0,40,72,.45) 20%, rgba(0,40,72,0) 33%, rgba(0,40,72,0) 72%, rgba(0,40,72,.78) 100%); }
+  .cover .frame { position: absolute; top: 40px; left: 40px; right: 40px; bottom: 74px; border: 1px solid rgba(255,255,255,.85); }
+  .cover .top { position: absolute; top: 116px; left: 84px; right: 70px; color: #fff; }
+  .cover .tag { font: 400 10px/1 var(--sans); letter-spacing: .34em; text-transform: uppercase; color: rgba(255,255,255,.85); }
+  .cover .addr { font: 400 21px/1.2 var(--sans); letter-spacing: .16em; text-transform: uppercase; margin-top: 20px; white-space: nowrap; }
+  .cover .addr .bar { display: inline-block; width: 1.5px; height: 25px; background: #fff; vertical-align: -5px; margin: 0 14px; }
+  .cover .area { font: 300 11.5px/1 var(--sans); letter-spacing: .24em; text-transform: uppercase; color: rgba(255,255,255,.75); margin-top: 14px; }
+  .cover .bottom { position: absolute; left: 84px; bottom: 120px; color: #fff; }
+  .cover .prep { font: 400 9.5px/1.9 var(--sans); letter-spacing: .3em; text-transform: uppercase; color: rgba(255,255,255,.85); }
+  .cover .logos { display: flex; align-items: center; gap: 30px; margin-top: 16px; }
+  .cover .logos img { height: 28px; }
+  .cover .brand { position: absolute; right: 85px; bottom: 30px; width: 180px; height: 126px; background: var(--navy); display: flex; align-items: center; justify-content: center; }
+  .cover .brand img { width: 140px; }
+
+  /* ---------- Page 2: the home ---------- */
+  .band { display: grid; grid-template-columns: repeat(4, 1fr); background: var(--navy); margin-top: 30px; height: 106px; }
+  .band div { border-left: 1px solid rgba(255,255,255,.18); padding: 30px 20px 0; color: #fff; }
+  .band div:first-child { border-left: 0; }
+  .band b { display: block; font: 400 34px/1 var(--serif); }
+  .band span { display: block; font: 500 8px/1 var(--sans); letter-spacing: .24em; text-transform: uppercase; margin-top: 12px; }
+  .two { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  .card { border: 1px solid var(--rule); background: #fff; }
+  .pad { padding: 28px 28px 24px; }
+  .card h3 { margin-top: 9px; }
+  .card .rule { width: 58px; height: 2px; margin-top: 14px; }
+  .apart p { font: 400 12px/1.6 var(--sans); color: var(--ink); margin-top: 14px; }
+  .apart ul { list-style: none; margin-top: 12px; }
+  .apart li { font: 400 12px/1.64 var(--sans); color: var(--ink); }
+  .apart .close, .timing .close { font: 400 12px/1.55 var(--sans); color: var(--navy); margin-top: 12px; }
+  .timing .intro { font: 300 11.5px/1.6 var(--sans); margin: 12px 0 0; padding-bottom: 8px; border-bottom: 1px solid var(--rule); }
+  .timing .row { display: grid; grid-template-columns: 88px 1fr; align-items: start; padding: 7px 0 6px; border-bottom: 1px solid var(--rule); }
+  .timing .row b { font: 400 22px/1 var(--serif); color: var(--navy); }
+  .timing .row span { font: 400 11.5px/1.5 var(--sans); padding-top: 4px; }
+  .timing .close { padding-top: 4px; }
+  .timing .fine { margin-top: 6px; }
+  .owners-note { font: 300 9.5px/1.4 var(--sans); color: var(--soft); position: absolute; left: 0; bottom: 68px; }
+
+  /* ---------- Comp and competition cards ---------- */
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 22px; }
+  .comp { border: 1px solid var(--rule); background: #fff; }
+  .comp .img { position: relative; height: 180px; background-size: cover; background-position: center; }
+  .comp .img.short { height: 160px; }
+  .comp .img.tour { height: 118px; }
+  .badge { position: absolute; left: 14px; bottom: 15px; background: var(--navy); color: #fff; font: 600 8.5px/1 var(--sans); letter-spacing: .26em; text-transform: uppercase; padding: 7px 11px; }
+  .badge.active { background: var(--blue); }
+  .comp .body { padding: 18px 18px 18px; }
+  .comp .where { font: 600 8px/1 var(--sans); letter-spacing: .22em; text-transform: uppercase; color: var(--blue); }
+  .comp .name { font: 400 19px/1.2 var(--serif); color: var(--navy); margin-top: 8px; }
+  .comp .price { font: 400 24px/1 var(--serif); color: var(--navy); margin-top: 12px; padding-bottom: 12px; border-bottom: 1px solid var(--rule); }
+  .comp .price small { font: 500 8.5px/1 var(--sans); letter-spacing: .2em; text-transform: uppercase; color: var(--soft); margin-left: 8px; }
+  .comp .facts { font: 300 11px/1.65 var(--sans); color: var(--ink); margin-top: 10px; }
+  .comp .note { font: italic 400 11.5px/1.6 var(--serif); color: var(--ink); margin-top: 8px; }
+  .tour .body { padding: 12px 16px 11px; }
+  .tour .facts { margin-top: 7px; }
+  .tour .name { font-size: 17px; margin-top: 5px; }
+  .tour .price { font-size: 21px; margin-top: 6px; padding-bottom: 8px; }
+  .page-note { font: italic 400 12.5px/1.6 var(--serif); color: var(--ink); margin-top: 18px; }
+
+  /* Sale price vs. first asking price chart */
+  .chart { margin-top: 18px; padding: 26px 28px 22px; }
+  .chart h3 { font-size: 20px; margin-top: 8px; }
+  .bars { margin-top: 16px; }
+  .bar { display: grid; grid-template-columns: 220px 1fr 46px; align-items: center; height: 24px; font: 300 11px/1 var(--sans); color: var(--ink); }
+  .bar .track { height: 9px; }
+  .bar .fill { height: 9px; background: var(--blue); }
+  .bar .v { text-align: right; }
+  .bar.you { background: var(--tint); margin: 2px -8px; padding: 0 8px; height: 28px; font-weight: 500; color: var(--navy); }
+  .bar.you .fill { background: var(--navy); }
+  .chart .italic-note { margin-top: 14px; }
+  .chart .fine { margin-top: 8px; }
+
+  /* ---------- Dark pages ---------- */
+  .dark { background: var(--navy); color: #fff; }
+  .dark .bg { position: absolute; inset: 0; background: url("img/water.jpg") center / cover; opacity: .28; }
+  .dark .inner { top: 52px; }
+  .dark .logo { height: 34px; }
+  .dark .eyebrow { color: rgba(255,255,255,.85); }
+  .dark h1 { color: #fff; }
+  .rec .label { font: 400 17px/1 var(--serif); color: rgba(255,255,255,.9); margin-top: 16px; }
+  .rec .big { font: 400 48px/1.1 var(--serif); margin-top: 14px; }
+  .rec .basis { font: italic 400 13.5px/1.5 var(--serif); color: rgba(255,255,255,.9); margin-top: 18px; }
+  .rec .boxes { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 24px; }
+  .rec .box { border: 1px solid rgba(255,255,255,.35); padding: 20px 22px 18px; min-height: 142px; }
+  .rec .box .k { font: 600 8px/1 var(--sans); letter-spacing: .26em; text-transform: uppercase; color: rgba(255,255,255,.85); }
+  .rec .box b { display: block; font: 400 27px/1 var(--serif); margin-top: 16px; }
+  .rec .box p { font: 300 11.5px/1.6 var(--sans); color: rgba(255,255,255,.88); margin-top: 10px; }
+  .rec .why { display: grid; grid-template-columns: 1fr 1fr; gap: 14px 30px; margin-top: 16px; }
+  .rec .why div { display: grid; grid-template-columns: 22px 1fr; font: 300 11.5px/1.55 var(--sans); color: rgba(255,255,255,.9); }
+  .rec .why i { font: 400 18px/1 var(--serif); font-style: normal; color: #fff; padding-top: 2px; }
+  .rec .sect { font: 600 9px/1 var(--sans); letter-spacing: .28em; text-transform: uppercase; color: rgba(255,255,255,.9); margin-top: 30px; }
+  .costs { width: 100%; border-collapse: collapse; margin-top: 10px; font: 300 11.5px/1 var(--sans); color: rgba(255,255,255,.9); }
+  .costs th { font: 400 8px/1 var(--sans); letter-spacing: .2em; text-transform: uppercase; color: rgba(255,255,255,.6); text-align: right; padding: 6px 0 4px; border-bottom: 1px solid rgba(255,255,255,.35); }
+  .costs td { padding: 9px 0; border-bottom: 1px solid rgba(255,255,255,.18); }
+  .costs td.n { text-align: right; width: 104px; }
+  .costs td.r { text-align: right; width: 60px; }
+  .costs tr.total td { font-weight: 600; color: #fff; border-bottom: 0; }
+  .rec .costnote { font: 300 11px/1.6 var(--sans); color: rgba(255,255,255,.88); margin-top: 10px; }
+  .rec .legal { font: 300 8px/1.5 var(--sans); color: rgba(255,255,255,.6); margin-top: 6px; }
+
+  /* ---------- Preparing for market ---------- */
+  .prep .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 26px; align-items: stretch; }
+  .prep .stack { display: grid; gap: 18px; align-content: start; }
+  .prep .card { padding: 26px 28px 22px; }
+  .prep .card .rule { margin-top: 12px; width: 63px; }
+  .prep ul { margin: 22px 0 0 18px; }
+  .prep li { font: 400 12px/1.78 var(--sans); color: var(--ink); padding-left: 4px; }
+
+  /* ---------- Marketing ---------- */
+  .mkt .lead { color: rgba(255,255,255,.85); max-width: 690px; }
+  .mkt .collage { margin-top: 26px; height: 452px; background: url("img/coverage.jpg") center / cover; border-radius: 3px; }
+  .mkt .lower { display: grid; grid-template-columns: 340px 1fr; gap: 26px; margin-top: 46px; align-items: center; }
+  .mkt .lower img { width: 300px; margin-left: 30px; }
+  .mkt .sites { display: grid; grid-template-columns: 1fr 1fr; gap: 3px 20px; margin-top: 12px; font: 300 12px/1.5 var(--sans); color: #fff; }
+  .mkt .extra { font: 300 11px/1.65 var(--sans); color: rgba(255,255,255,.7); margin-top: 14px; }
+
+  /* ---------- Network ---------- */
+  .net .stats { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); margin-top: 26px; }
+  .net .stats div { padding: 22px 0 16px 6px; border-left: 1px solid var(--rule); padding-left: 18px; }
+  .net .stats div:first-child { border-left: 0; padding-left: 4px; }
+  .net .stats b { display: block; font: 400 30px/1 var(--serif); color: var(--navy); }
+  .net .stats span { display: block; font: 600 8px/1 var(--sans); letter-spacing: .24em; text-transform: uppercase; color: var(--blue); margin-top: 12px; }
+  .net .mid { display: grid; grid-template-columns: 340px 1fr; gap: 28px; margin-top: 20px; }
+  .net .map { width: 340px; height: 380px; border: 1px solid var(--rule); background: url("img/office-map.png") center / cover; }
+  .net .places .kicker { margin-top: 6px; }
+  .net .places .kicker + ul { margin-top: 12px; }
+  .net .places ul { list-style: none; margin-bottom: 18px; }
+  .net .places li { font: 400 12px/1.62 var(--sans); color: var(--ink); }
+  .net .about { display: grid; grid-template-columns: 92px 1fr; gap: 22px; border-top: 1px solid var(--rule); margin-top: 32px; padding-top: 20px; }
+  .net .about img { width: 92px; height: 116px; object-fit: cover; }
+  .net .about p { font: 400 11.5px/1.6 var(--sans); color: var(--ink); margin-top: 10px; }
+  .net .about p.fine { font: 300 8.5px/1.35 var(--sans); color: var(--soft); }
+  .net .ranks { display: grid; grid-template-columns: repeat(3, 1fr); margin-top: 18px; }
+  .net .ranks b { display: block; font: 400 21px/1 var(--serif); color: var(--navy); }
+  .net .ranks span { display: block; font: 600 8px/1 var(--sans); letter-spacing: .22em; text-transform: uppercase; color: var(--blue); margin-top: 8px; }
+  .net .about .fine { margin-top: 10px; }
+</style>
+</head>
+<body>

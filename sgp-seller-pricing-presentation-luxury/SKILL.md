@@ -9,15 +9,15 @@ Use this when Sanni (or a Sea Glass agent) wants a list price and likely sale pr
 
 ## Always use the approved template
 Sanni wants every pricing presentation to look exactly like the 18 South Grapetree Bay deck (Nov 2026). Do not redesign it.
-- **Template HTML:** Listing writer project doc `claude/templates/seller-pricing-presentation-template.html`. Read it with the Projects tool (`project_read`) and save it as `deck.html` in a working folder. Full how-to notes: `claude/templates/seller-pricing-presentation-instructions.md` in the same project.
-- **Area pricing guide:** `claude/st-croix-area-pricing-guide.md` in the same project (price tiers by area, view premium, elevation, flood zones, amenities by area). Read it before choosing comps. Refresh it when it is more than six months old.
-- **Assets kit:** `sgp-pricing-presentation-template.zip` in Sanni's Google Drive, Claude folder (Drive file ID `1CF9YVBVBbPSABEH1HrYLgkKB51P116CV`). Download it with the Drive connector (the result is saved to a file; base64-decode its `content`), unzip into a fresh folder. It holds `img/` (Sea Glass St. Croix logos normal and reverse, LeadingRE, Luxury Portfolio, agent photo, office map.svg, coverage.jpg collage, devices.png, water.jpg background), `fonts/` (Playfair Display, Montserrat) and `render.py`.
-- Logos only, as a backup: the Sea Glass design system artifact (claude.ai/artifact/7J8ZJ4LjW7MbEeXdmAYev8), `project/assets/logos/`.
-- If the kit can't be reached, ask for it before building. Do not substitute other fonts, logos or layouts.
+- **Template (bundled with this skill):** `template/head.html` (styles), `template/body.html` (pages 1 to 7: cover, the home, two closed-sales pages, competition, recommendation, preparing for market) and `template/tail.html` (marketing and network pages). Rebuilt from the approved 18 South Grapetree Bay deck; page 4 uses the sale price vs. first asking price chart from the 162 Anna's Hope deck. The example content in it is real and approved: use it as the model for voice and detail, then replace every word, number and photo.
+- **Area pricing guide:** `claude/st-croix-area-pricing-guide.md` in the Listing writer Claude project (price tiers by area, view premium, elevation, flood zones, amenities by area). Read it before choosing comps. Refresh it when it is more than six months old.
+- **Assets (bundled):** `assets/img/` holds the Sea Glass St. Croix logos (color and white), Luxury Portfolio (white and color), LeadingRE (white), `office-map.png`, `coverage.jpg` (syndication collage), `devices.png`, `water.jpg` (dark page background) and `agent-sanni-craft.jpg`. `assets/example/` holds the 18 South Grapetree example photos so the untouched template renders. All recovered from the approved deck.
+- **Fonts:** Playfair Display and Montserrat load from Google Fonts. Offline, put the .ttf files in a `fonts/` folder next to `deck.html` (names in `head.html`). `render.py` warns when either font did not load; do not deliver a deck rendered in fallback fonts.
+- Do not substitute other fonts, logos or layouts.
 - Change only the content: text, numbers and the property photos (`img/cover-house.jpg`, `img/s1-s6.jpg` for sold comps, `img/a1-a6.jpg` for active competition). Keep classes, sizes, colors, spacing and page order.
-- A practical build: split the template into `head.html` (styles up to the cover), `body.html` (pages 1 to 6) and `tail.html` (marketing and network pages), edit `body.html`, then `cat head.html body.html tail.html > deck.html`.
+- **Build:** make a fresh working folder with an `img/` folder. Copy `assets/img/*` into it, add the listing's photos as `img/cover-house.jpg`, `img/s1.jpg` to `s6.jpg` and `img/a1.jpg` to `a6.jpg`, and the presenting agent's photo as `img/agent.jpg`. Copy the three template files in, edit `body.html` (and the agent block and footer address in `tail.html`), then `cat head.html body.html tail.html > deck.html`. Each page and the format of each field are commented in the template.
 - Property photos: MLS photos download directly from the Flexmls `Uri800` links. Listing photos in the agent's Drive folder come through the Drive connector.
-- Render with `python3 render.py deck.html out.pdf` (Playwright with Chrome, 8.5in x 11in, backgrounds on).
+- Render with `python3 scripts/render.py deck.html out.pdf --png pages/` (Playwright with Chromium, 8.5in x 11in, backgrounds on; `--png` writes one image per page for the check in Step 6). It lists any missing image. If Chromium is not where Playwright expects it, set `CHROMIUM_PATH`.
 - The finished PDF is usually over the Drive connector's upload limit; send it in chat and tell the agent to file it.
 
 ## Hard rules
@@ -99,8 +99,8 @@ NAR-compliant wording: fees are fully negotiable and not set by law; offering bu
 9. **A network that reaches the buyer (always last):** office map, stats, About the agent with verified MLS rankings and source line.
 
 ## Step 6: Check and deliver
-- Render each page to PNG and look at it: no overflow, list items on one line, no orphan words, page count right, footer page numbers in order, network page last. (Crop page images with PIL; Playwright's element screenshot does not take `clip`.)
-- Footer edits in `tail.html`: it uses a literal `·`, not `&middot;`.
+- Render each page to PNG and look at it: no overflow, list items on one line, no orphan words, page count right, footer page numbers in order, network page last. (`render.py --png` writes the page images; crop them with PIL to look closer.)
+- Footer page numbers count themselves, so dropping Preparing for market renumbers the rest. Edit only the footer text (address or source line).
 - **Comp test (Sanni's most important rule):** every sold comp and every competitor must pass two tests: a comparable area (same or neighboring location tier) AND a comparable price (inside the subject's bracket). Also check the view class. A comp that fails either test comes out, or stays only with a note saying why it is there and how it differs.
 - Re-check every number in the deck against its source, and the selling-cost arithmetic.
 - Agent rankings: MLS closed volume, both sides, year to date, verified with two separate pulls; state source and dates.
